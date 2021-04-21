@@ -5,9 +5,6 @@ import userEvent from '@testing-library/user-event'
 import App from './App'
 
 describe('General Calculator Test Functions', () => {
-  test('Correct render', () => {
-    render(<App />)
-  })
   test('No more than 9 digits', () => {
     render(<App />)
     const pantalla = screen.getByText('0', { selector: 'div' })
