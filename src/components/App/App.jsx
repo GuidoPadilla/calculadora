@@ -39,7 +39,7 @@ const App = () => {
     if (resultado !== 'ERROR') {
       if (resultado.length < 9 && escritura === true) {
         setResultado(`${resultado}${numero}`)
-      } else if (resultado.length < 9 && escritura === false) {
+      } else if (resultado.length <= 9 && escritura === false) {
         setResultado(`${numero}`)
         escritura = true
       }
@@ -80,9 +80,9 @@ const App = () => {
       if (control.length === 0) {
         control = [agregado]
       }
-      const valorFinal = control[0].toString().includes('.') ? control[0].toFixed(2).toString() : control[0].toString()
+      let valorFinal = control[0].toString().includes('.') ? control[0].toFixed(2).toString() : control[0].toString()
       if (valorFinal.length > 9) {
-        control = ['ERROR']
+        valorFinal = 'ERROR'
       }
       switch (operacion) {
         case '=':
@@ -98,15 +98,17 @@ const App = () => {
     }
   }
   const onHandleClickFomrmate = (operacion) => {
-    if (operacion === '+/-') {
-      if (resultado.length < 9 || (resultado.length === 9 && resultado.includes('-'))) {
-        const temporal = parseFloat(resultado) * -1
-        setResultado(temporal.toString())
-      }
-    } else if (operacion === '.') {
-      if (!resultado.includes('.')) {
-        setResultado(`${resultado}.`)
-        escritura = true
+    if (resultado !== 'ERROR') {
+      if (operacion === '+/-') {
+        if (resultado.length < 9 || (resultado.length === 9 && resultado.includes('-'))) {
+          const temporal = parseFloat(resultado) * -1
+          setResultado(temporal.toString())
+        }
+      } else if (operacion === '.') {
+        if (!resultado.includes('.')) {
+          setResultado(`${resultado}.`)
+          escritura = true
+        }
       }
     }
   }

@@ -48,7 +48,7 @@ module.exports = {
   <html>
     <head>
       <meta charset="utf-8">
-      <title> Calculadora GuidoPadilla</title>
+      <title> Calculadora GuidoPadilla 19200</title>
     </head>
     <body>
       <div id="root"></div>
